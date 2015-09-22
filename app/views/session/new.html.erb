@@ -1,0 +1,20 @@
+<div class="form-login-div">
+	<div class="form-login">
+	<%= form_tag '/login' do %>
+		<ul>
+			<li>
+			    <%= label_tag :email %>
+			    <%= text_field_tag :email %>
+			    <span>Enter your e-mail ID</span>
+			</li>
+			<li>
+			    <%= label_tag :password %>
+				<%= password_field_tag :password %>
+			    <span>Password</span>
+			</li>
+			    <%= submit_tag 'Login to VWFlight thing', class: "btn btn-primary" %>
+			</li>
+		</ul>
+	<% end %>
+	</div>
+</div>
