@@ -6,12 +6,14 @@ app.AppRouter = Backbone.Router.extend({
 	},
 
 	index: function ( id ) {
-		console.log( id );
-		console.log('are we here at the index?');
-		console.log(app.flights)
 
-		app.pageID = parseInt(id);
+		// console.log( id );
+		app.pageID = parseInt( id );
+		// console.log('are we here at the index?');
+		// create a view somehow
+		// _.where( somelist ,{id: id});
+		appView = new app.AppView({collection: app.flights});
+		appView.render();
 
-		appView = new app.AppView({collection: app.flights})
 	}
 });
