@@ -1,5 +1,5 @@
-var app = app|| {};
+var app = app || {};
 
-app.Resevation = Backbone.Model.extend({
-	urlRoot: 'reservations'
-})
+app.Reservation = Backbone.Model.extend({
+	urlRoot: '/reservations'
+});
