@@ -34,6 +34,7 @@ $(document).ready( function () {
 			app.planes.fetch().done( function() {
 				app.reservations.fetch().done( function() {
 					app.reservations.setUpListeners();
+					app.reservations.setUpListeners2();
 				});
 			})
 		})

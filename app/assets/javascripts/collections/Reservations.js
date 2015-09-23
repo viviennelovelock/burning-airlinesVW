@@ -12,5 +12,13 @@ app.Reservations = Backbone.Collection.extend({
 			reservationView.render();
 			// console.log('added');
 		});
+	},
+
+	setUpListeners2: function () {
+		this.on('remove', function ( reservation ) {
+			var reservationView = new app.AppView( {model: reservation});
+			reservationView.render();
+			// console.log('added');
+		});
 	}
 });
