@@ -10,6 +10,8 @@ app.SeatPlanView = Backbone.View.extend({
 		// }))
 	},
 
+	//155
+
 	render: function () {
 
 		this.$el.text( 'seat' ).attr('id', ( (app.i % app.numColumns + 1 ).toString() + ( Math.floor( app.i / app.numColumns ) + 1 ).toString() ));
@@ -30,12 +32,13 @@ app.SeatPlanView = Backbone.View.extend({
 
 	clickclick: function (event) {
 		// should prevent someone from clicking a box already reserved/coloured
-		debugger;
-		console.log( event.target.id );
-		// console.log(@current_user.id);
-		this.$el.toggleClass( 'reserved' );
 
-		// debugger;
+		var rowAndColumnRegex = event.target.id.match(/(\d)(\d+)/)
+		var columnFirst = rowAndColumnRegex[1];
+		var rowFirst = rowAndColumnRegex[2];
+		console.log(columnFirst+"   "+ rowFirst);
+		this.$el.toggleClass( 'reserved' );
+		app.reservations.create({row: rowFirst, column: columnFirst, user_id: app.currentUser, flight_id: app.pageID});
 	}
 });
 

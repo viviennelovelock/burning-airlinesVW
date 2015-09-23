@@ -18,9 +18,22 @@ $(document).ready( function () {
 			app.reservations.fetch().done( function() {
 				app.router = new app.AppRouter();
 				Backbone.history.start( { pushState: true } );
+				
 			});
 		});
 	});
+
+	setInterval( function () {
+
+		app.flights.fetch().done( function() {
+			app.planes.fetch().done( function() {
+				app.reservations.fetch().done( function() {
+					app.reservations.setUpListeners();
+				});
+			})
+		})
+	
+	}, 1000);
 
 	// app.planes = new app.Planes();
 	// app.planes.fetch();
