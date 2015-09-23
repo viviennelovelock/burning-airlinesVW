@@ -8,6 +8,8 @@ _.templateSettings = {
 
 $(document).ready( function () {
 
+	app.currentUser = ~~($('h6').html());
+
 	app.flights = new app.Flights();
 	app.flights.fetch().done( function() {
 		app.planes = new app.Planes();
