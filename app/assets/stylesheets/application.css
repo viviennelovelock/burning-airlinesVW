@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+#main ul{
+	list-style-type: none;
+}
+
+#main ul li {
+	display: inline-block;
+	border: 1px solid black;
+	height: 4em;
+	width: 4em;
+	margin: 4px 4px;
+}
+
+.reserved {
+	background-color: red;
+}
