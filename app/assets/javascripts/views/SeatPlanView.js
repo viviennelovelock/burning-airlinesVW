@@ -14,14 +14,24 @@ app.SeatPlanView = Backbone.View.extend({
 
 	render: function () {
 
-		this.$el.text( 'seat' ).attr('id', ( (app.i % app.numColumns + 1 ).toString() + ( Math.floor( app.i / app.numColumns ) + 1 ).toString() ));
+		this.$el.attr('id', ( (app.i % app.numColumns + 1 ).toString() + ( Math.floor( app.i / app.numColumns ) + 1 ).toString() ));
 		this.$el.appendTo( '#seats-list');
 		// console.log( this.$el.attr('id') );
 		// debugger;
 		var $list = this.$el;
 		_.each( app.seatsTaken, function (seat) {
 			if( seat.column + seat.row === $('li').last().attr( 'id' ) ) {
-				$('li').last().css( 'background-color', 'black' );
+
+	
+				var rowAndColumnRegex = $('li').last().attr('id').match(/(\d)(\d+)/)
+				var columnFirst = rowAndColumnRegex[1];
+				var rowFirst = rowAndColumnRegex[2];
+
+				var relatedUserID = _.where(app.seatsTaken, {column: columnFirst, row: rowFirst})[0].user_id;
+				var relatedUserName = _.where( app.users.models, { id: relatedUserID })[0].get('name')
+				$('li').last().css( 'background-color', 'pink' ).text(relatedUserName);
+
+				// debugger;
 			}
 		});
 	},
@@ -36,8 +46,13 @@ app.SeatPlanView = Backbone.View.extend({
 		var rowAndColumnRegex = event.target.id.match(/(\d)(\d+)/)
 		var columnFirst = rowAndColumnRegex[1];
 		var rowFirst = rowAndColumnRegex[2];
-		console.log(columnFirst+"   "+ rowFirst);
-		this.$el.toggleClass( 'reserved' );
+		// console.log(columnFirst+"   "+ rowFirst);
+		// this.$el.toggleClass( 'reserved' );
+		// // if the square clicked is related to current user, destroy; else, create
+		// var relatedUserID = _.where(app.seatsTaken, {column: columnFirst, row: rowFirst})[0].user_id;
+		// var relatedUserName = _.where( app.users.models, { id: relatedUserID })[0].get('name');
+		// console.log( relatedUserName );
+		// debugger;
 		app.reservations.create({row: rowFirst, column: columnFirst, user_id: app.currentUser, flight_id: app.pageID});
 	}
 });

@@ -12,12 +12,13 @@ app.AppView = Backbone.View.extend({
 	render: function () {
 		var $seatsPlan = $('#seats-plan').html();
 		this.$el.html( $seatsPlan );
-
-		var currentFlight = app.flights.get( app.pageID ).get('id');
+		var currentFlight = app.flights.models[ app.pageID - 1].get('id');
 		// console.log( app.planes.models );
+		// debugger;
 
 		// this is 3
-		var relatedPlaneID = _.where( app.planes.models, { id: currentFlight })[0].id;
+		var relatedPlaneID = app.flights.models[ app.pageID - 1 ].get('plane_id');
+		// var relatedPlaneID = _.where( app.planes.models, { id: currentFlight })[0].id;
 		var actualFuckingPlane = _.where( app.planes.models, {id: relatedPlaneID} )[0];
 
 		var numRows = actualFuckingPlane.get('row');
@@ -34,7 +35,7 @@ app.AppView = Backbone.View.extend({
 		});
 
 		app.seatsTaken = _.map( app.relatedReservationList, function (child) {
-			return { column: child.get( 'column' ), row: child.get( 'row') }
+			return { column: child.get( 'column' ), row: child.get( 'row'), user_id: child.get('user_id') }
 		} );
 
 		// console.log( app.seatsTaken );

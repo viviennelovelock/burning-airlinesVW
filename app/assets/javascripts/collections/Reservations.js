@@ -10,7 +10,7 @@ app.Reservations = Backbone.Collection.extend({
 		this.on('add', function ( reservation ) {
 			var reservationView = new app.AppView( {model: reservation});
 			reservationView.render();
-			console.log('added');
+			// console.log('added');
 		});
 	}
 });

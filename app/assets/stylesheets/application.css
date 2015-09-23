@@ -24,6 +24,7 @@
 	height: 4em;
 	width: 4em;
 	margin: 4px 4px;
+	overflow: hidden;
 }
 
 .reserved {
