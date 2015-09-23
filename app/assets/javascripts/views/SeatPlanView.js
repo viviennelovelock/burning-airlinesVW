@@ -27,8 +27,10 @@ app.SeatPlanView = Backbone.View.extend({
 				var columnFirst = rowAndColumnRegex[1];
 				var rowFirst = rowAndColumnRegex[2];
 
-				var relatedUserID = _.where(app.seatsTaken, {column: columnFirst, row: rowFirst})[0].user_id;
-				var relatedUserName = _.where( app.users.models, { id: relatedUserID })[0].get('name')
+				// var relatedUserID = _.where(app.seatsTaken, {column: columnFirst, row: rowFirst})[0].user_id;
+				var relatedUserID = _.findWhere( app.seatsTaken, {column: columnFirst, row: rowFirst}).user_id;
+				// var relatedUserName = _.where( app.users.models, { id: relatedUserID })[0].get('name')
+				var relatedUserName = _.findWhere( app.users.models, { id: relatedUserID }).get('name')
 				$('li').last().css( 'background-color', 'pink' ).text(relatedUserName);
 
 				// debugger;

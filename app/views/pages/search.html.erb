@@ -1,3 +1,26 @@
 <h2>BACKBONE SEARCH PAGE GOES HERE</h2>
 
 <div id="main"></div>
+
+<script id="search" type="template/underscore">
+	<input id="origin" type="text" placeholder="From" autofocus>
+	<input id="destination" type="text" placeholder="To">
+	<button>Search</button>
+	<table>
+		<tr id="table-header">
+			<th>DATE</th>
+			<th>FLIGHT</th>
+			<th>FROM > TO</th>
+			<th>PLANE</th>			
+		</tr>
+	</table>
+</script>
+
+<script id="details" type="template/underscore">
+	<tr>
+		<td>{{ date }}</td>
+		<td><a href="/flights/{{ id }}">{{ flight_number }}</a></td>
+		<td>{{ origin }} {{ destination }}</td>
+		<td>{{ app.planes.get(plane_id).get('name') }}</td>
+	</tr>
+</script>

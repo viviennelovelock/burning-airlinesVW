@@ -14,6 +14,7 @@ $(document).ready( function () {
 	app.users = new app.Users();
 	app.users.fetch().done( function() {
 		app.flights = new app.Flights();
+		app.flights.comparator = 'date';
 		app.flights.fetch().done( function() {
 			app.planes = new app.Planes();
 			app.planes.fetch().done( function() {
