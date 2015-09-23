@@ -6,6 +6,7 @@ app.AppRouter = Backbone.Router.extend({
 	},
 
 	index: function ( id ) {
+
 		// console.log( id );
 		app.pageID = parseInt( id );
 		// console.log('are we here at the index?');

@@ -27,9 +27,10 @@ app.SeatPlanView = Backbone.View.extend({
 		'click': 'clickclick'
 	},
 
-	clickclick: function () {
+	clickclick: function (event) {
 		// should prevent someone from clicking a box already reserved/coloured
-		console.log( 'i am clicked' );
+		console.log( event.target.id );
+		// console.log(@current_user.id);
 		this.$el.toggleClass( 'reserved' );
 		debugger;
 	}

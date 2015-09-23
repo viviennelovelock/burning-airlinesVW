@@ -5,6 +5,7 @@ _.templateSettings = {
   interpolate : /\{\{([\s\S]+?)\}\}/g   // {{ key }} - interpolates we want it to <%= spit someting out %>
 };
 
+
 $(document).ready( function () {
 
 	app.flights = new app.Flights();
