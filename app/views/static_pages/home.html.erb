@@ -2,6 +2,7 @@
 
 <% if @current_user.present? %>
 <h1>Welcome <%= "#{@current_user.name}" %></h1>
+<h6><%= @current_user.id %></h6>
 <% else %>
 <h2><%= link_to "Sign up now!", new_user_path %></h2>
 
