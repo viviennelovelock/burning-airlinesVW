@@ -46,14 +46,22 @@ app.SeatPlanView = Backbone.View.extend({
 		var rowAndColumnRegex = event.target.id.match(/(\d)(\d+)/)
 		var columnFirst = rowAndColumnRegex[1];
 		var rowFirst = rowAndColumnRegex[2];
-		// console.log(columnFirst+"   "+ rowFirst);
-		// this.$el.toggleClass( 'reserved' );
-		// // if the square clicked is related to current user, destroy; else, create
-		// var relatedUserID = _.where(app.seatsTaken, {column: columnFirst, row: rowFirst})[0].user_id;
-		// var relatedUserName = _.where( app.users.models, { id: relatedUserID })[0].get('name');
-		// console.log( relatedUserName );
-		// debugger;
-		app.reservations.create({row: rowFirst, column: columnFirst, user_id: app.currentUser, flight_id: app.pageID});
+
+		if ( app.currentUserName === $('#' + event.target.id ).text() ) {
+			todelete = _.filter( app.reservations.models, function(child){
+			   if ( child.get('user_id') === app.currentUser && child.get('row') === rowFirst && child.get('column') === columnFirst && child.get('flight_id') === app.pageID ) { 
+			   	return child;	
+			   }
+			} )
+
+			todelete[0].destroy();
+			var newView = new app.AppView();
+			newView.render();
+		} else if ( $('#' + event.target.id).text() === '' ) {
+			app.reservations.create({row: rowFirst, column: columnFirst, user_id: app.currentUser, flight_id: app.pageID});
+		} else {
+			return;
+		}
 	}
 });
 
