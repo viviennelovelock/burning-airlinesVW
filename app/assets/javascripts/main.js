@@ -11,9 +11,12 @@ $(document).ready(function() {
     app.currentUser = ~~($('h6').html());
     app.currentUserName = $('h5').html();
 
+    // Ensure all important data is loaded before router starts
     app.users = new app.Users();
     app.users.fetch().done(function() {
         app.flights = new app.Flights();
+
+        // Sort app.flights by date
         app.flights.comparator = 'date';
         app.flights.fetch().done(function() {
             app.planes = new app.Planes();
@@ -30,11 +33,14 @@ $(document).ready(function() {
         });
     });
 
+    // Send AJAX request to server every 1 second
     setInterval(function() {
 
         app.flights.fetch().done(function() {
             app.planes.fetch().done(function() {
                 app.reservations.fetch().done(function() {
+
+                    // Rendering new view whenever someone adds or removes reservation
                     app.reservations.setUpListeners();
                     app.reservations.setUpListeners2();
                 });
@@ -42,10 +48,5 @@ $(document).ready(function() {
         })
 
     }, 1000);
-
-    // app.planes = new app.Planes();
-    // app.planes.fetch();
-
-    // we wait for the document to be ready, start router
 
 });

@@ -28,8 +28,7 @@
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :plane_id %><br>
-    <%= f.number_field :plane_id %>
+    <%= f.select("plane_id", Plane.all.collect {|plane| [ plane.name, plane.id ] }, {include_blank: 'None'}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -7,12 +7,8 @@ app.AppRouter = Backbone.Router.extend({
     },
 
     index: function(id) {
-
-        // console.log( id );
+        // Gets flight_id from URL
         app.pageID = parseInt(id);
-        // console.log('are we here at the index?');
-        // create a view somehow
-        // _.where( somelist ,{id: id});
         appView = new app.AppView({
             collection: app.flights
         });
@@ -26,6 +22,7 @@ app.AppRouter = Backbone.Router.extend({
         });
         searchView.render();
 
+        // Typeahead
         var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
                 var matches, substringRegex;
@@ -48,6 +45,7 @@ app.AppRouter = Backbone.Router.extend({
             };
         };
 
+        // Predicts origin and destination from database
         var origin = _.uniq(app.flights.pluck('origin'));
         var destination = _.uniq(app.flights.pluck('destination'));
 
