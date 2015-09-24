@@ -1,13 +1,13 @@
 var app = app || {};
 
 app.SearchResultsView = Backbone.View.extend({
-	el: 'table',
+    el: 'table',
 
-	render: function () {
-		var detailsListTemplate = $('#details').html();
-		var detailsListHTML = _.template( detailsListTemplate );
-		var detailsList = detailsListHTML( this.model.toJSON() );
+    render: function() {
+        var detailsListTemplate = $('#details').html();
+        var detailsListHTML = _.template(detailsListTemplate);
+        var detailsList = detailsListHTML(this.model.toJSON());
 
-		this.$el.append( detailsList );
-	}
+        this.$el.append(detailsList);
+    }
 });
