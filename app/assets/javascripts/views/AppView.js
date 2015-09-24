@@ -46,6 +46,12 @@ app.AppView = Backbone.View.extend({
 			var seatPlanView = new app.SeatPlanView();
 			seatPlanView.render();
 		}
+
+		var $seatsAvailable = $('#seats-available');
+		var totalSeats = parseInt( numRows ) * parseInt( numColumns );
+		app.remainingSeats = totalSeats - app.seatsTaken.length;
+		$seatsAvailable.text( app.remainingSeats + ' seats left');
+
 	}
 });
 

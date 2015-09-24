@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'session/new'
 
-	root :to => 'static_pages#home'
+	root :to => 'pages#search'
 
   resources :reservations
   resources :users
